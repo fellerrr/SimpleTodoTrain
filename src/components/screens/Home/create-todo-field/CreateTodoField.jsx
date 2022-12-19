@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const CreateTodoField = ({setTodos}) => {
+const CreateTodoField = ({setTodos,todos}) => {
     const [title, setTitle] = useState('')
     const addTodo = title => {
         setTodos(prev =>[
@@ -12,6 +12,16 @@ const CreateTodoField = ({setTodos}) => {
             ...prev,
         ])
         setTitle('')
+
+        const copy3 = [
+            {
+            _id: new Date(),
+            title,
+            isCompleted: false,
+        },
+            ...todos,
+        ]
+        localStorage.setItem('TodoList', JSON.stringify(copy3));
     }
 
 
